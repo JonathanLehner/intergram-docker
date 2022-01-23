@@ -1,0 +1,29 @@
+  your_container:
+    image: jonathanlehner/xinan_english
+    environment:
+      - VIRTUAL_HOST=server.real-impact.org
+      - LETSENCRYPT_HOST=server.real-impact.org
+      - LETSENCRYPT_EMAIL=jonathanslehner@gmail.com
+      - VIRTUAL_PORT=3000
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "certs-volume:/etc/nginx/certs:ro"
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      - DEBUG=true
+    volumes:
+      - "certs-volume:/etc/nginx/certs"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
+
