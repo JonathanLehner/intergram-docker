@@ -7,7 +7,8 @@
     "postinstall": "npm run build",
     "dev": "start http://localhost:3000/demo.html & node devServer.js",
     "build-pre": "mkdir -p dist && cp -r *.html dist && cp -r ./media dist && cp -r ./css dist",
-    "build": "webpack --mode production",
+    "build-post": "webpack --mode production",
+    "build": "npm run build-pre && npm run build-post",
     "test": "npm run -s lint",
     "lint": "eslint src"
   },
@@ -16,9 +17,9 @@
   ],
   "devDependencies": {
     "babel-loader": "8",
-    "webpack": "^4.46.0",
+    "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.1",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "store": "^2.0.12",
-    "store2": "^2.13.1"
+    "store2": "^2.13.1",
+    "write-good": "^1.0.8"
   }
 }

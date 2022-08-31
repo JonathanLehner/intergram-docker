@@ -11,11 +11,12 @@ COPY package*.json ./
 # Bundle app source
 COPY . .
 
-RUN npm install
+RUN npm install --force
 # If you are building your code for production
 # RUN npm ci --only=production
 
-EXPOSE 8080
+ENV PORT=3000
+EXPOSE 3000
 
 CMD [ "node", "server.js" ]
 

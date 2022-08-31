@@ -1,5 +1,5 @@
   your_container:
-    image: jonathanlehner/xinan_english
+    image: jonathanlehner/intergram_docker
     environment:
       - VIRTUAL_HOST=server.real-impact.org
       - LETSENCRYPT_HOST=server.real-impact.org
